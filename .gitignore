@@ -1,0 +1,11 @@
+#VK music
+music
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Maven
+log/
+target/
