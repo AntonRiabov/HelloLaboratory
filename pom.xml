@@ -22,6 +22,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-lab</module>
+        <module>ember-lab</module>
     </modules>
 
     <dependencies>
