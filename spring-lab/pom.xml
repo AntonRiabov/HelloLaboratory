@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-boot-lab</module>
-        <module>../spring-boot-mongodb</module>
+        <module>spring-boot-mongodb</module>
     </modules>
 
 
