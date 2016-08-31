@@ -10,6 +10,8 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.http.MediaType;
 
+import java.util.Date;
+
 /**
  * Created by paladii on 24.08.2016.
  */
@@ -35,6 +37,9 @@ public class Application implements CommandLineRunner{
     @Autowired
     private CustomerRepository repository;
 
+    @Autowired
+    PostRepository postRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -47,6 +52,9 @@ public class Application implements CommandLineRunner{
 //         save a couple of customers
         repository.save(new Customer("Alice", "Smith"));
         repository.save(new Customer("Bob", "Smith"));
+
+        postRepository.save(new Post("author", "title","body",new Date()));
+        postRepository.save(new Post("author1", "title1","body1",new Date()));
 
         // fetch all customers
         System.out.println("Customers found with findAll():");
