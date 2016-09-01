@@ -13,13 +13,18 @@ public class Author {
 
     @Id
     private String id;
+    private String name;
     private List<String> posts;
 
     public Author() {
     }
 
-    public Author(String id, List<String> posts) {
-        this.id = id;
+    public Author(String name) {
+        this.name = name;
+    }
+
+    public Author(String name, List<String> posts) {
+        this.name = name;
         this.posts = posts;
     }
 
@@ -37,5 +42,13 @@ public class Author {
 
     public void setPosts(List<String> posts) {
         this.posts = posts;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

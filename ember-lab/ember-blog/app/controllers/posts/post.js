@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
      //
      //var post = this.store.createRecord('post', {
      //  author: null,
-     //   title: 'Rails is Omakase',
+     //   title: 'Rails is Omaka
      //   body: 'Lorem ipsum',
      //  date: new Date()
      // });

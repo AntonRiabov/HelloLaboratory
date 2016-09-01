@@ -12,13 +12,14 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Created by paladii on 24.08.2016.
  */
 @SpringBootApplication
-public class Application implements CommandLineRunner{
+public class Application implements CommandLineRunner {
 
 /*
 
@@ -37,14 +38,14 @@ public class Application implements CommandLineRunner{
     }
 */
 
-    @Bean
+/*    @Bean
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
         builder.featuresToEnable(SerializationFeature.WRAP_ROOT_VALUE)
 //                .featuresToEnable(SerializationFeature.ARR)
         ; // enables wrapping for root elements
         return builder;
-    }
+    }*/
 
 
     @Autowired
@@ -52,6 +53,8 @@ public class Application implements CommandLineRunner{
 
     @Autowired
     PostRepository postRepository;
+    @Autowired
+    AuthorRepository authorRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -60,16 +63,22 @@ public class Application implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
 
-        repository.deleteAll();
+//        repository.deleteAll();
 
 //         save a couple of customers
-        repository.save(new Customer("Alice", "Smith"));
-        repository.save(new Customer("Bob", "Smith"));
+//        repository.save(new Customer("Alice", "Smith"));
+//        repository.save(new Customer("Bob", "Smith"));
+        authorRepository.deleteAll();
+        postRepository.deleteAll();
 
-        /*postRepository.deleteAll();
+        Author author = authorRepository.save(new Author("Anton"));
 
-        postRepository.save(new Post("author", "title","body",new Date()));
-        postRepository.save(new Post("author1", "title1","body1",new Date()));*/
+        Post post = postRepository.save(new Post(author.getId(), "title", "body", new Date()));
+        Post post1 = postRepository.save(new Post(author.getId(), "title1", "body1", new Date()));
+
+        author.setPosts(Arrays.asList(post.getId(), post1.getId()));
+
+        authorRepository.save(author);
 
         // fetch all customers
         System.out.println("Customers found with findAll():");

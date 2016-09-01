@@ -24,15 +24,17 @@ public class PostsRestController {
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public HashMap<String, Collection<Post>> getPosts(){
-                                   return new HashMap<String, Collection<Post>>(){
+    public HashMap<String, Object> getPosts(){
+                                   return new HashMap<String, Object>(){
                                        {put(POSTS_ROOT_NAME,postRepository.findAll());}
                                    };
     }
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Post getPost(@PathVariable(value = "id") String id ){
+    public HashMap<String, Object> getPost(@PathVariable(value = "id") String id ){
 
-        return postRepository.findOne(id);
+        return new HashMap<String, Object>(){
+            {put(POSTS_ROOT_NAME, postRepository.findOne(id));}
+        };
     }
 
 }
