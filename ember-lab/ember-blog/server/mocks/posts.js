@@ -27,14 +27,16 @@ var posts = [
   {
     id: 1,
     title: 'Banana',
-    author: 1,
+    author: '1',
     body: "Great yellow fruit",
+    body1: "Great yellow fruit2",
     date: new Date(2014,5,4,6,0,0)
   }, {
     id: 2,
     title: 'Apples',
     author: 1,
     body: "can be of almost any color",
+    body2: "can be of almost any color2",
     date: new Date(2014,5,4,6,0,0)
   }
 ];
@@ -43,7 +45,7 @@ var authors = [
   {
     id: 1,
     name: "Anton",
-    posts: [1, 2]
+    posts: ["1", '2']
   }
 ];
 
@@ -54,8 +56,8 @@ module.exports = function (app) {
 
   postsRouter.get('/', function (req, res) {
       res.send({
-      'posts': posts,
-      'authors': authors
+      'posts': posts/*,
+      'authors': authors*/
     });
   });
 
@@ -67,9 +69,9 @@ module.exports = function (app) {
     res.send({
       'posts': posts.find(function(post){
         return post.id == req.params.id;
-      }),
+      })/*,
       'authors': authors
-
+*/
     });
   });
 

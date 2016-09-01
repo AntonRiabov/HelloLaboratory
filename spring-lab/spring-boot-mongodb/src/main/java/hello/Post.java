@@ -1,18 +1,24 @@
 package hello;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 /**
  * Created by anton.riabov on 8/31/2016.
  */
 @Document(collection = "posts")
+@JsonRootName(value = "post")
+//@XmlRootElement(name = "post")
 public class Post {
 
     @Id
     private String id;
+//    @JsonIgnore
     private String author;
     private String title;
     private String body;

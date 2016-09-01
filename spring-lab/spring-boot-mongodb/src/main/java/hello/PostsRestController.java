@@ -1,11 +1,15 @@
 package hello;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  *
@@ -14,13 +18,21 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/posts")
 public class PostsRestController {
+    public static final String POSTS_ROOT_NAME = "posts";
     @Autowired
     PostRepository  postRepository;
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public Collection<Post> getPosts(){
-                                   return postRepository.findAll();
+    public HashMap<String, Collection<Post>> getPosts(){
+                                   return new HashMap<String, Collection<Post>>(){
+                                       {put(POSTS_ROOT_NAME,postRepository.findAll());}
+                                   };
+    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Post getPost(@PathVariable(value = "id") String id ){
+
+        return postRepository.findOne(id);
     }
 
 }
