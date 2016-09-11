@@ -1,4 +1,4 @@
-package hello;
+package com.bubblebee.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 /**
+ *
  * Created by anton.riabov on 8/25/2016.
  */
 @Document(collection = "authors")

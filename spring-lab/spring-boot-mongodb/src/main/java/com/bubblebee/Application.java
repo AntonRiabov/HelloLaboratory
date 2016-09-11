@@ -1,7 +1,11 @@
-package hello;
+package com.bubblebee;
 
-import com.fasterxml.jackson.databind.SerializationFeature;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bubblebee.model.Author;
+import com.bubblebee.repository.AuthorRepository;
+import com.bubblebee.repository.CustomerRepository;
+import com.bubblebee.model.Customer;
+import com.bubblebee.model.Post;
+import com.bubblebee.repository.PostRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +13,9 @@ import org.springframework.context.annotation.Bean;
 /*import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;*/
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -38,22 +42,23 @@ public class Application implements CommandLineRunner {
     }
 */
 
-/*    @Bean
+    @Bean
     public Jackson2ObjectMapperBuilder jacksonBuilder() {
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-        builder.featuresToEnable(SerializationFeature.WRAP_ROOT_VALUE)
+//        builder.featuresToEnable(SerializationFeature.WRAP_ROOT_VALUE)
 //                .featuresToEnable(SerializationFeature.ARR)
         ; // enables wrapping for root elements
         return builder;
-    }*/
+    }
 
 
-    @Autowired
+    @Resource(name = "customer-repo")
     private CustomerRepository repository;
 
-    @Autowired
+    @Resource(name = "post-repo")
     PostRepository postRepository;
-    @Autowired
+
+    @Resource(name = "author-repo")
     AuthorRepository authorRepository;
 
     public static void main(String[] args) {
